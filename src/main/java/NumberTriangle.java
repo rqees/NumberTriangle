@@ -88,8 +88,20 @@ public class NumberTriangle {
      *
      */
     public int retrieve(String path) {
-        // TODO implement this method
-        return -1;
+        if (path.isEmpty()){
+            return this.root;
+        }
+        else{
+            char firstCharacter = path.charAt(0);
+            String rest = path.substring(1);
+            if(Character.toLowerCase(firstCharacter) == Character.toLowerCase('l'))
+                return left.retrieve(rest);
+            else if (Character.toLowerCase(firstCharacter) == Character.toLowerCase('r'))
+                return right.retrieve(rest);
+            else
+                throw new IllegalArgumentException("Invalid character in path: " + firstCharacter);
+        }
+
     }
 
     /** Read in the NumberTriangle structure from a file.
